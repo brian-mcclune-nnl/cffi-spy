@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm", "cffi>=1.0.0"]
+requires = ["setuptools>=64", "setuptools-scm>=8", "cffi>=1.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -13,3 +13,5 @@ dependencies = [
     "cffi>=1.0.0",
 ]
 dynamic = ["version"]
+
+[tool.setuptools_scm]
