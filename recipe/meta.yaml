@@ -1,0 +1,44 @@
+{% set name = "approx_pi" %}
+{% set version = "0.1.0" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  number: 213
+  script: {{ PYTHON }} -m pip install . -vv
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - cffi>=1.0.0
+    - pip
+    - python
+    - setuptools>=64
+    - setuptools-scm>=8
+  run:
+    - cffi>=1.0.0
+    - python
+
+test:
+  imports:
+    - _approx_pi 
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: http://github.com/brian-mcclune-nnl/cffi-spy
+  summary: Simple approximator functions for Pi.
+  license: MIT
+
+extra:
+  recipe-maintainers:
+    - brian-mcclune-nnl
