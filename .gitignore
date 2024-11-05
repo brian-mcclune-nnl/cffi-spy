@@ -1,3 +1,4 @@
 approx_pi.egg-info/
 _approx_pi.*.so
+build/
 venv/
