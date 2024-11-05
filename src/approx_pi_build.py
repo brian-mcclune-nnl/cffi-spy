@@ -3,7 +3,8 @@ from textwrap import dedent
 
 from cffi import FFI
 
-parent_dir = str(Path(__file__).parent.resolve())
+parent_dir = Path(__file__).parent.resolve()
+rel_parent_dir = parent_dir.relative_to(Path.cwd())
 
 ffibuilder = FFI()
 ffibuilder.cdef(dedent("""\
@@ -15,11 +16,11 @@ ffibuilder.set_source(
     dedent("""\
         #include "approx_pi.h"
     """),
-    sources=['approx_pi.cpp'],
+    sources=[str(rel_parent_dir.joinpath('approx_pi.cpp'))],
     source_extension=".cpp",
-    include_dirs=[parent_dir])
-    # library_dirs=[parent_dir],
-    # extra_link_args=[f"-Wl,-rpath,{parent_dir}"],
+    include_dirs=[str(parent_dir)])
+    # library_dirs=[str(parent_dir)],
+    # extra_link_args=[f"-Wl,-rpath,{str(parent_dir)}"],
     # libraries=["approx_pi"])
 
 
